@@ -6,7 +6,8 @@ struct AddRecurringExpenseView: View {
 
     @State private var title = ""
     @State private var amount = ""
-    @State private var startDate = Date()
+    // @State private var startDate = Date()
+    @Binding var startDate: Date
     @State private var interval: TimeInterval = 30*24*60*60  // Default monthly
     @State private var recurrenceType: RecurringExpense.RecurrenceType = .monthly
 

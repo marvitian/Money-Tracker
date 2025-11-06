@@ -258,16 +258,15 @@ struct ContentView: View {
                         }
                     }
                 }
-                .navigationTitle("Money Tracker")
                 .sheet(isPresented: $showingAddExpense) {
-                    AddExpenseView()
+                    AddExpenseView(selectedDate: $selectedDate)
                 }
                 .sheet(isPresented: $showingAddPaycheck) {
-                    AddPaycheckView()
+                    AddPaycheckView(selectedDate: $selectedDate)
                 }
                 .sheet(isPresented: $showingRecPay)
                 {
-                    AddRecurringExpenseView()
+                    AddRecurringExpenseView(startDate: $selectedDate)
                 }
             }
         }

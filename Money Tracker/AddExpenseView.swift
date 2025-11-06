@@ -6,7 +6,7 @@ struct AddExpenseView: View {
     
     @State private var title = ""
     @State private var amount = ""
-    @State private var date = Date()
+    @Binding var selectedDate: Date // bind from parent ... 
     
     var body: some View {
         NavigationView {
@@ -14,14 +14,14 @@ struct AddExpenseView: View {
                 TextField("Title", text: $title)
                 TextField("Amount", text: $amount)
                     .keyboardType(.decimalPad)
-                DatePicker("Date", selection: $date, displayedComponents: .date)
+                DatePicker("Date", selection: $selectedDate, displayedComponents: .date)
             }
             .navigationTitle("Add Expense")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         if let amt = Double(amount) {
-                            let expense = Expense(title: title, amount: amt, date: date)
+                            let expense = Expense(title: title, amount: amt, date: selectedDate)
                             financeData.addExpense(expense)
                             dismiss()
                         }
