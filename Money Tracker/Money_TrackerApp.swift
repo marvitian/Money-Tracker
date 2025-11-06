@@ -286,23 +286,14 @@ struct ContentView: View {
 
 @main
 struct Money_TrackerApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    @StateObject private var financeData = FinanceData()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(financeData)
+                .accentColor(Color("Color"))
+//                .background(Color("Background"))
         }
-        .modelContainer(sharedModelContainer)
     }
 }
